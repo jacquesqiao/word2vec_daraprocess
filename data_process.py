@@ -6,7 +6,6 @@ from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
 
 stopword_map = dict((k, 1) for k in stopwords.words('english'))
-line_len = 100
 
 
 def process_file(in_files):
@@ -22,16 +21,14 @@ def process_file(in_files):
                      and w != ""
                      and not w.isdigit()
                      and w.lower() not in stopword_map]
-            new_words = [words[i:i + line_len] for i in xrange(0, len(words), line_len)]
             with open(out_file, "w") as out_f:
-                for item in new_words:
-                    out_f.write(" ".join(item) + "\n")
+                out_f.write(" ".join(words) + "\n")
 
 
 def get_filenames(dir_name):
     files = [file for file in os.listdir(dir_name) if
              file.startswith("englishText") and
-             file.endswith("_out")]
+             file.endswith("0000")]
     return files
 
 
