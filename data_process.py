@@ -6,6 +6,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
 
 stopword_list = stopwords.words('english')
+stopword_map = dict((k,1) for k in stopword_list)
 line_len = 100
 
 
@@ -19,7 +20,7 @@ def process_file(in_files):
             tokens = tokenizer.tokenize(in_content)
             words = [w.lower() for w in tokens if w.isalpha()
                      and not w.isdigit()
-                     and w not in stopword_list]
+                     and w.lower() not in stopword_map]
             new_words = [words[i:i + line_len] for i in xrange(0, len(words), line_len)]
             with open(out_file, "w") as out_f:
                 for item in new_words:
