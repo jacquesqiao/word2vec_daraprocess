@@ -18,7 +18,9 @@ def process_file(in_files):
         with open(in_file, "r") as in_f:
             in_content = in_f.read()
             tokens = tokenizer.tokenize(in_content)
-            words = [w.lower() for w in tokens if w.isalpha()
+            words = [w.lower() for w in tokens if 
+                     w.isalpha()
+                     and w != ""
                      and not w.isdigit()
                      and w.lower() not in stopword_map]
             new_words = [words[i:i + line_len] for i in xrange(0, len(words), line_len)]
