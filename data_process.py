@@ -5,8 +5,7 @@ import math
 from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
 
-stopword_list = stopwords.words('english')
-stopword_map = dict((k,1) for k in stopword_list)
+stopword_map = dict((k, 1) for k in stopwords.words('english'))
 line_len = 100
 
 
